@@ -1,5 +1,8 @@
 package lesson1;
 
+/**
+ Создал проект Зинченко В.В.
+ */
 public class HomeWorkApp {
     public static void main(String[] args) {
 /**
