@@ -10,22 +10,22 @@ public class HomeWorkApp {
          * С помощью цикла и условия заменить 0 на 1, 1 на 0;
          */
         System.out.println("1 задание");
-//        int[] arr = {1, 1, 0, 0, 1, 0, 1, 1, 0, 0};
-//        replacementInArray(arr);
+        int[] arr = {1, 1, 0, 0, 1, 0, 1, 1, 0, 0};
+        replacementInArray(arr);
 
         /**
          * 2. Задать пустой целочисленный массив длиной 100.
          * С помощью цикла заполнить его значениями 1 2 3 4 5 6 7 8 … 100;
          */
         System.out.println("2 задание");
-//        fillArray();
+        fillArray();
 
         /**
          * 3. Задать массив [ 1, 5, 3, 2, 11, 4, 5, 2, 4, 8, 9, 1 ]
          * пройти по нему циклом, и числа меньше 6 умножить на 2;
          */
         System.out.println("3 задание");
-//        arrayCycleValue();
+        arrayCycleValue();
 
         /**
          * 4. Создать квадратный двумерный целочисленный массив
@@ -38,7 +38,7 @@ public class HomeWorkApp {
          * то есть [0][0], [1][1], [2][2], …, [n][n];
          */
         System.out.println("4 задание");
-//        fillDiagonal();
+        fillDiagonal();
 
         /**
          * 5. Написать метод, принимающий на вход два аргумента:
@@ -46,14 +46,14 @@ public class HomeWorkApp {
          * длиной len, каждая ячейка которого равна initialValue;
          */
         System.out.println("5 задание");
-//        methodsTwoArguments(5, 7);
+        methodsTwoArguments(5, 7);
 
         /**
          * 6. * Задать одномерный массив и найти в нем минимальный
          * и максимальный элементы;
          */
         System.out.println("6 задание");
-//        arrayMaxAndMinValue(1, 2, 6, -4, 4, 5, -2, -5, 2, 3);
+        arrayMaxAndMinValue(1, 2, 6, -4, 4, 5, -2, -5, 2, 3);
 
         /**
          * 7. ** Написать метод, в который передается не пустой
@@ -62,9 +62,9 @@ public class HomeWorkApp {
          * и правой части массива равны.
          */
         System.out.println("7 задание");
-//        checkBalance(2, 2, 2, 1, 2, 2, 10, 1);//true
-//        checkBalance(1, 1, 1, 2, 1);//true
-//        checkBalance(1, 1, 2, 1);//false
+        checkBalance(2, 2, 2, 1, 2, 2, 10, 1);//true
+        checkBalance(1, 1, 1, 2, 1);//true
+        checkBalance(1, 1, 2, 1);//false
 
         /**
          * 8. *** Написать метод, которому на вход
