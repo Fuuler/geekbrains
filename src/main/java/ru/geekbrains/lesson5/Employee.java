@@ -24,11 +24,11 @@ public class Employee {
         this.age = age;
     }
 
-    public void printEmployee(Employee employee){
+    public static void printEmployee(Employee employee){
         System.out.println(employee.toString());
     }
 
-    public void arrayEmployee(Employee... array) {
+    public static void arrayEmployee(Employee... array) {
       for (int i = 0; i < array.length; i++){
           if(array[i].age > 40){
               System.out.println(array[i].toString());
