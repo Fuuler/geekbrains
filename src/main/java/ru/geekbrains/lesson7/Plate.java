@@ -1,25 +1,28 @@
 package ru.geekbrains.lesson7;
 
 public class Plate {
-    private int food;
 
-    public Plate(int food) {
-        if(food <= 0) {
-            this.food = food;
-        } else {
-            System.out.printf("в тарелку не положили еду %d " + this.food);
+    public Plate(int food, int eat, String cat) {
+        if (addFood(food) <= 0 && eat <= 0){
+            System.out.println("прости, " + cat + ", но хозяин еду в тарелку не положил");
+            return;
+        }
+        if (addFood(food) < eat){
+            System.out.println(cat + " не может съесть больше еды чем есть в тарелке");
+            return;
+        }
+        if (addFood(food) >= 20 && eat >= 20){
+            System.out.println(cat + " is not hungry");
+            return;
+        }
+        if (addFood(food) < 20 || eat < 20){
+            System.out.println(cat + " is hungry");
+            return;
         }
     }
 
-    public void decreaseFood(int amount) {
-        food -= amount;
-    }
-
-    public int getFood() {
+    public int addFood(int food){
         return food;
     }
 
-    public void info() {
-        System.out.printf("Plate [ Food: %d ]\n", food);
-    }
 }
