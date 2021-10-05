@@ -9,6 +9,7 @@ public class MainApp {
         cats[2] = new Cat("Chernish");
         cats[3] = new Cat("Doshirak");
         cats[4] = new Cat("Mivina");
+
         for (int i = 0; i < cats.length; ++i) {
             cats[i].getName();
             Plate plate = new Plate(20, 20, cats[i].getName());
