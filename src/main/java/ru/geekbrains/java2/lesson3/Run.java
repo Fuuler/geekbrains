@@ -9,7 +9,7 @@ public class Run {
                            "Коля", "Лисан", "Рома", "Петя", "Лора");
 
         Set<String> noDublicate = new LinkedHashSet<>(array);
-        System.out.println("список уникальных слов " + noDublicate);
+        System.out.println("список уникальных имен " + noDublicate);
 
         HashMap<String, Integer> duplicateNames = new HashMap<>();
         Integer duplicateName;
@@ -17,6 +17,6 @@ public class Run {
             duplicateName = duplicateNames.get(i);
             duplicateNames.put(i, duplicateName == null ? 1 : duplicateName + 1);
         }
-        System.out.println("сколько раз встречается каждое слово " + duplicateNames);
+        System.out.println("сколько раз встречается каждое имя " + duplicateNames);
         }
     }
