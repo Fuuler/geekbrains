@@ -1,5 +1,8 @@
 package ru.geekbrains.java2.lesson1;
-
+/**
+ * Создал проект
+ * Зинченко В.В.
+ */
 public class Main {
     public static void main(String[] args) {
         Team[] teams = new Team[3];
