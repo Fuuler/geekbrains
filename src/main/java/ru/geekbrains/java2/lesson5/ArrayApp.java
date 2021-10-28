@@ -1,6 +1,4 @@
-package ru.geekbrains.java2.lesson4;
-
-import ru.geekbrains.java2.lesson2.Main;
+package ru.geekbrains.java2.lesson5;
 
 import java.util.Arrays;
 
