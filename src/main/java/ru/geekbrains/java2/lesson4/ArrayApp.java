@@ -36,7 +36,7 @@ public class ArrayApp {
         long split = System.currentTimeMillis();
         System.out.println("Время разделения массива " + (split - timeRun));
 
-        //произвожу вычисления в NUMBER_THREADS потоков, запускаю, жду окончания
+        //произвожу вычисления в NUMBER_THREADS потоков, запускаю, жду окончания.
         for(int i = 0; i < NUMBER_THREADS; i++){
             int finals = i;
             threads[i] = new Thread(() -> calcSeconderArr(newArr, finals));
