@@ -1,6 +1,4 @@
-package ru.geekbrains.java2.lesson4.controller;
-
-import javafx.application.Application;
+package ru.geekbrains.java2.lesson4;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -9,7 +7,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import ru.geekbrains.java2.lesson4.ChatClient;
 
 import java.nio.charset.Charset;
 import java.text.Format;
@@ -17,7 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ClientController {
-
     @FXML
     private void handleSendMsg(MouseEvent e) {
         genericHandler(e);
@@ -25,7 +21,7 @@ public class ClientController {
 
     @FXML
     private void handleEnterPressed(KeyEvent e) {
-        if(e.getCode() == KeyCode.ENTER) {
+        if (e.getCode() == KeyCode.ENTER) {
             genericHandler(e);
         }
     }
@@ -35,32 +31,32 @@ public class ClientController {
         TextField tf = (TextField) source.getScene().lookup("#msg");
 
         if(tf.getText().length() > 0) {
-            TextArea ta = (TextArea) source.getScene().lookup("#chartArea");
+            TextArea ta = (TextArea) source.getScene().lookup("#chatArea");
             ta.appendText(getFormattedTime() + getEmogi(tf.getText()) + "\n");
             tf.clear();
         }
+
         tf.requestFocus();
     }
-
 
     private String getFormattedTime() {
         Format formatter = new SimpleDateFormat("HH:mm:ss");
         String time = formatter.format(new Date());
-        return "[" + time + "]";
+        return "[" + time + "] ";
     }
 
     private String getEmogi(String msg) {
-        if(msg.indexOf("=)") > -1) {
-            byte[] emojiBytes = new byte[]{(byte)0xF0, (byte)0x9F,
-                    (byte)0x98, (byte)0x83};
+        // https://www.compart.com/en/unicode/block/U+1F600
+        // https://apps.timwhitlock.info/emoji/tables/unicode
+        if (msg.indexOf("=)") > -1) {
+            byte[] emojiBytes = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x83};
             String emojiAsString = new String(emojiBytes, Charset.forName("UTF-8"));
             msg = msg.replaceAll("=\\)", emojiAsString);
         }
-        if(msg.indexOf("cat") > -1){
-            byte[] emojiBytes = new byte[]{(byte)0xF0, (byte)0x9F,
-                    (byte)0x98, (byte)0xB8};
+        if (msg.indexOf("cat") > -1) {
+            byte[] emojiBytes = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0xB8};
             String emojiAsString = new String(emojiBytes, Charset.forName("UTF-8"));
-            msg = msg.replaceAll("People", emojiAsString);
+            msg = msg.replaceAll("cat", emojiAsString);
         }
         return msg;
     }
