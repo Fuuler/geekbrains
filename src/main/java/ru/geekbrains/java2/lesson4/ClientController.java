@@ -1,9 +1,10 @@
 package ru.geekbrains.java2.lesson4;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.TextField;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -14,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ClientController {
+
     @FXML
     private void handleSendMsg(MouseEvent e) {
         genericHandler(e);
@@ -30,7 +32,7 @@ public class ClientController {
         Node source = (Node) e.getSource();
         TextField tf = (TextField) source.getScene().lookup("#msg");
 
-        if(tf.getText().length() > 0) {
+        if (tf.getText().length() > 0) {
             TextArea ta = (TextArea) source.getScene().lookup("#chatArea");
             ta.appendText(getFormattedTime() + getEmogi(tf.getText()) + "\n");
             tf.clear();
@@ -49,15 +51,16 @@ public class ClientController {
         // https://www.compart.com/en/unicode/block/U+1F600
         // https://apps.timwhitlock.info/emoji/tables/unicode
         if (msg.indexOf("=)") > -1) {
-            byte[] emojiBytes = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0x83};
+            byte[] emojiBytes = new byte[]{(byte) 0xF0, (byte) 0x9F, (byte) 0x98, (byte) 0x83};
             String emojiAsString = new String(emojiBytes, Charset.forName("UTF-8"));
             msg = msg.replaceAll("=\\)", emojiAsString);
         }
-        if (msg.indexOf("cat") > -1) {
-            byte[] emojiBytes = new byte[]{(byte)0xF0, (byte)0x9F, (byte)0x98, (byte)0xB8};
+        if (msg.indexOf("people") > -1) {
+            byte[] emojiBytes = new byte[]{(byte) 0xF0, (byte) 0x9F, (byte) 0x98, (byte) 0xB8};
             String emojiAsString = new String(emojiBytes, Charset.forName("UTF-8"));
-            msg = msg.replaceAll("cat", emojiAsString);
+            msg = msg.replaceAll("people", emojiAsString);
         }
         return msg;
     }
 }
+
