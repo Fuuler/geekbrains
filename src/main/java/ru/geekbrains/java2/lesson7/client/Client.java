@@ -1,7 +1,5 @@
 package ru.geekbrains.java2.lesson7.client;
 
-import ru.geekbrains.java2.lesson7.constans.Constants;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
