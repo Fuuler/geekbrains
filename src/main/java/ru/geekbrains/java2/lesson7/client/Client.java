@@ -53,6 +53,19 @@ public class Client extends JFrame {
         }).start();
     }
 
+    private void sendMessage(){
+        if (textField.getText().trim().isEmpty()) {
+            return;
+        }
+        try {
+            dataOutputStream.writeUTF(textField.getText());
+            textField.setText("");
+            textField.grabFocus();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     private void prepareUI() {
         setBounds(200, 200, 500, 500);
         setTitle("Client");
@@ -67,9 +80,30 @@ public class Client extends JFrame {
         JButton button = new JButton("Send");
         panel.add(button, BorderLayout.EAST);
         textField = new JTextField();
-        panel.add(textField, BorderLayout.SOUTH);
+        panel.add(textField, BorderLayout.CENTER);
+
+        add(panel, BorderLayout.SOUTH);
 
         JPanel loginPanel = new JPanel(new BorderLayout());
+        JTextField loginField = new JTextField();
+        loginPanel.add(loginField, BorderLayout.WEST);
+        JTextField passField = new JTextField();
+        loginPanel.add(passField, BorderLayout.CENTER);
+        JButton authButton = new JButton("Авторизоваться");
+        loginPanel.add(authButton, BorderLayout.EAST);
+        add(loginPanel, BorderLayout.NORTH);
+
+        authButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    dataOutputStream.writeUTF(AUTH_COMMAND + " " +
+                            loginField.getText() + " " + passField.getText());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
 
         button.addActionListener(new ActionListener() {
             @Override
@@ -80,8 +114,26 @@ public class Client extends JFrame {
         textField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                sendMessage();
             }
         });
+        setVisible(true);
+    }
+
+    private void closeConnection() {
+        try {
+            dataOutputStream.close();
+        } catch (Exception ex) {
+
+        }
+        try {
+            dataInputStream.close();
+        } catch (Exception ex) {
+
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(Client::new);
     }
 }
