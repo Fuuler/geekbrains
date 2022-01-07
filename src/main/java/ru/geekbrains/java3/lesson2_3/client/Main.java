@@ -1,4 +1,4 @@
-package ru.geekbrains.java3.lesson2.client;
+package ru.geekbrains.java3.lesson2_3.client;
 
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -14,7 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader();
-        Parent root = loader.load(getClass().getResourceAsStream("../client/chat.fxml"));
+        Parent root = loader.load(getClass().getResourceAsStream("/client/chat.fxml"));
         controller = loader.getController();
 
         primaryStage.setTitle("My_Chat");

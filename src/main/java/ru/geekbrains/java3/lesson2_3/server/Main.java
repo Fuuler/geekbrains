@@ -1,4 +1,4 @@
-package ru.geekbrains.java3.lesson2.server;
+package ru.geekbrains.java3.lesson2_3.server;
 
 import java.io.IOException;
 import java.net.ServerSocket;

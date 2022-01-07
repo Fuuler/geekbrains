@@ -1,16 +1,15 @@
-package ru.geekbrains.java3.lesson2.client;
+package ru.geekbrains.java3.lesson2_3.client;
 
-import ru.geekbrains.java3.lesson2.server.AuthService;
+import ru.geekbrains.java3.lesson2_3.server.AuthService;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Controller {
     @FXML
@@ -53,7 +52,7 @@ public class Controller {
 
     private void setAuthorized(boolean isAuthorized) {
         this.isAuthorized = isAuthorized;
-        if(!isAuthorized) {
+        if (!isAuthorized) {
             upperPanel.setVisible(true);
             upperPanel.setManaged(true);
             registredPanel.setVisible(true);
@@ -96,6 +95,7 @@ public class Controller {
                             String str = in.readUTF();
                             if (str.startsWith("/authok")) {
                                 setAuthorized(true);
+                                loadHistoryFile();
                                 break;
                             } else {
                                 textArea.appendText(str + "\n");
@@ -118,6 +118,7 @@ public class Controller {
                                 });
                             } else {
                                 textArea.appendText(str + "\n");
+                                SaveHistoryInFile();
                             }
                         }
 
@@ -141,7 +142,7 @@ public class Controller {
     void Dispose() {
         System.out.println("Отправляем сообщение о закрытии");
         try {
-            if(out != null) {
+            if (out != null) {
                 out.writeUTF("/end");
             }
         } catch (IOException e) {
@@ -160,7 +161,7 @@ public class Controller {
     }
 
     public void tryToAuth() {
-        if(socket == null || socket.isClosed()) {
+        if (socket == null || socket.isClosed()) {
             connect();
         }
         try {
@@ -174,7 +175,7 @@ public class Controller {
     }
 
     public void registration() {
-        if(socket == null || socket.isClosed()) {
+        if (socket == null || socket.isClosed()) {
             connect();
         }
         AuthService.setNewUsers(regLogin.getText(), regPassword.getText(), regNick.getText());
@@ -185,8 +186,49 @@ public class Controller {
     }
 
     public void selectClient(MouseEvent mouseEvent) {
-        if(mouseEvent.getClickCount() == 2) {
+        if (mouseEvent.getClickCount() == 2) {
             System.out.println("Двойной клик");
+        }
+    }
+
+    private void SaveHistoryInFile() throws IOException {
+        try {
+            File history = new File("history.txt");
+            if (!history.exists()) {
+                System.out.println("Файла истории нет,создадим его");
+                history.createNewFile();
+            }
+            PrintWriter fileWriter = new PrintWriter(new FileWriter(history, false));
+
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            bufferedWriter.write(textArea.getText());
+            bufferedWriter.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadHistoryFile() throws IOException {
+        int posHistory = 100;
+        File history = new File("history.txt");
+        List<String> historyList = new ArrayList<>();
+        FileInputStream in = new FileInputStream(history);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
+
+        String temp;
+        while ((temp = bufferedReader.readLine()) != null) {
+            historyList.add(temp);
+        }
+
+        if (historyList.size() > posHistory) {
+            for (int i = historyList.size() - posHistory; i <= (historyList.size() - 1); i++) {
+                textArea.appendText(historyList.get(i) + "\n");
+            }
+        } else {
+            for (int i = 0; i < posHistory; i++) {
+                System.out.println(historyList.get(i));
+            }
         }
     }
 }

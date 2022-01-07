@@ -1,4 +1,4 @@
-package ru.geekbrains.java3.lesson2.server;
+package ru.geekbrains.java3.lesson2_3.server;
 
 import java.sql.*;
 
@@ -30,8 +30,8 @@ public class AuthService {
 
     }
 
-    static int getBlackListUserById(int _nickId) {
-        String idBlackListUser = String.format("SELECT id_blacklist_user FROM blacklist where id_user = '%s'", _nickId);
+    static int getBlackListUserById(int nickId) {
+        String idBlackListUser = String.format("SELECT id_blacklist_user FROM blacklist where id_user = '%s'", nickId);
 
         try {
             ResultSet rs = stmt.executeQuery(idBlackListUser);
@@ -46,8 +46,8 @@ public class AuthService {
         return 0;
     }
 
-    static int getIdByNick(String _nick) {
-        String idNick = String.format("SELECT id FROM main where nickname = '%s'", _nick);
+    static int getIdByNick(String nick) {
+        String idNick = String.format("SELECT id FROM main where nickname = '%s'", nick);
         try {
             ResultSet rs = stmt.executeQuery(idNick);
 
@@ -61,8 +61,8 @@ public class AuthService {
         return 0;
     }
 
-    static boolean addBlackListByNickAndNickName(int _nickId, int _nicknameId) {
-        String addBlackListUser = String.format("INSERT INTO blacklist (id_user,id_blacklist_user) VALUES ('%s', '%s');", _nickId, _nicknameId);
+    static boolean addBlackListByNickAndNickName(int nickId, int nicknameId) {
+        String addBlackListUser = String.format("INSERT INTO blacklist (id_user,id_blacklist_user) VALUES ('%s', '%s');", nickId, nicknameId);
 
         try {
             boolean rs = stmt.execute(addBlackListUser);

@@ -1,15 +1,15 @@
-package ru.geekbrains.java3.lesson2.server;
+package ru.geekbrains.java3.lesson2_3.server;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
-public class ClientHandler {
+class ClientHandler {
 
     private Socket socket;
     private DataInputStream in;
-    private static DataOutputStream out;
+    private DataOutputStream out;
     private Main server;
     private String nick;
 
@@ -17,8 +17,8 @@ public class ClientHandler {
         return nick;
     }
 
-    boolean checkBlackList(String _blacklist_nick) {
-        int nickId = AuthService.getIdByNick(_blacklist_nick);
+    boolean checkBlackList(String blacklist_nick) {
+        int nickId = AuthService.getIdByNick(blacklist_nick);
         int blacklistId = AuthService.getBlackListUserById(nickId);
         return blacklistId > 0;
     }
@@ -108,7 +108,7 @@ public class ClientHandler {
         }
     }
 
-    static void sendMsg(String msg) {
+    void sendMsg(String msg) {
         try {
             out.writeUTF(msg);
         } catch (IOException e) {
