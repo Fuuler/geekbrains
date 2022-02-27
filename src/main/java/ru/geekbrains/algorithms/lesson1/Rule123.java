@@ -1,4 +1,4 @@
-package ru.geekbrains.log.lesson1;
+package ru.geekbrains.algorithms.lesson1;
 
 public class Rule123 {
 
