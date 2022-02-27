@@ -1,6 +1,7 @@
 package ru.geekbrains.java3.lesson1;
 
-public class Stats <T extends Number>{
+public class Stats <T extends Number> {
+
     private T[] nums;
 
     public Stats(T... nums) { //varargs - перечисления
